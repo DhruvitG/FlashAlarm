@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">FlashAlarm</string>
+    <string name="new_alarm">New Alarm</string>
+    <string name="action_settings">Settings</string>
+    <string name="alarm_time_minutes">Alarm Time</string>
+</resources>

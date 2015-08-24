@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_linear_layout"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        ></include>
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/new_alarm_button"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:text="@string/new_alarm"
+        android:background="@color/ColorPrimary"
+        android:textColor="@color/White"/>
+
+    <ListView
+        android:id="@+id/alarm_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/ColorPrimary">
+    </ListView>
+
+</LinearLayout>
