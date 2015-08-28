@@ -31,25 +31,5 @@ public class AlarmCursorAdapter extends CursorAdapter{
         String minute = Integer.toString(db_minute);
         String time = hour + ":" + minute;
         timeView.setText(time);
-
-        Switch toggle = (Switch) view.findViewById(R.id.toggle_button);
-        toggle.setOnClickListener(new Button.OnClickListener(){
-            public void onClick(View button){
-
-            }
-        });
-        toggle.setChecked(true);
-        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    // The toggle is enabled
-
-                } else {
-                    // The toggle is disabled
-                }
-
-                System.out.println();
-            }
-        });
     }
 }

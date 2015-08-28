@@ -1,0 +1,25 @@
+TASK com.flashalarm.dhruvit.flashalarm id=171
+  ACTIVITY com.flashalarm.dhruvit.flashalarm/.MainActivity 3c7d3bd5 pid=11094
+    Local FragmentActivity 21b1cba6 State:
+      mCreated=truemResumed=true mStopped=false mReallyStopped=false
+      mLoadersStarted=true
+    FragmentManager misc state:
+      mActivity=com.flashalarm.dhruvit.flashalarm.MainActivity@21b1cba6
+      mContainer=android.support.v4.app.FragmentActivity$2@2d2479e7
+      mCurState=5 mStateSaved=false mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.impl.PhoneWindow$DecorView{5567994 V.E..... ... 0,0-768,1280}
+        android.widget.LinearLayout{3b550c3d V.E..... ... 0,0-768,1184}
+          android.view.ViewStub{211efc32 G.E..... ... 0,0-0,0 #1020373}
+          android.widget.FrameLayout{bb4cd83 V.E..... ... 0,50-768,1184}
+            android.support.v7.internal.widget.FitWindowsLinearLayout{8eb9b00 V.E..... ... 0,0-768,1134 #7f0c002c app:id/action_bar_root}
+              android.support.v7.internal.widget.ViewStubCompat{378b2f39 G.E..... ... 0,0-0,0 #7f0c002d app:id/action_mode_bar_stub}
+              android.support.v7.internal.widget.NativeActionModeAwareLayout{dbca97e V.E..... ... 0,0-768,1134 #1020002 android:id/content}
+                android.widget.LinearLayout{2a6cbedf V.E..... ... 0,0-768,1134 #7f0c0043 app:id/main_linear_layout}
+                  android.support.v7.widget.Toolbar{31ef672c V.E..... ... 0,0-768,112 #7f0c0044 app:id/tool_bar}
+                    android.widget.TextView{2c6685f5 V.ED.... ... 32,29-237,83}
+                    android.support.v7.widget.ActionMenuView{34f5df8a V.E..... ... 768,0-768,112}
+                  android.widget.Button{258869fb VFED..C. ... 0,132-768,282 #7f0c0045 app:id/new_alarm_button}
+                  android.widget.ListView{3e81ca18 V.ED.VC. ... 0,282-768,1134 #7f0c0046 app:id/alarm_listview}
+        android.view.View{f668c71 V.ED.... ... 0,0-768,50 #102002f android:id/statusBarBackground}
+        android.view.View{1dda6a56 V.ED.... ... 0,1184-768,1280 #1020030 android:id/navigationBarBackground}

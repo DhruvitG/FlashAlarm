@@ -10,10 +10,9 @@ import android.os.PowerManager;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-//TODO:Setup way to disable alarm
-
 public class AlarmReceiver extends BroadcastReceiver
 {
+
     @Override
     public void onReceive(Context context, Intent intent)
     {
@@ -34,20 +33,4 @@ public class AlarmReceiver extends BroadcastReceiver
         wakeLock.release();
     }
 
-    public void setAlarm(Context context, int time)
-    {
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        //alarmManager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), 1000*60*1, pendingIntent);
-        alarmManager.setExact(AlarmManager.RTC, System.currentTimeMillis() + time * 1000, pendingIntent);
-    }
-
-    public void CancelAlarm(Context context)
-    {
-        Intent intent = new Intent(context, AlarmReceiver.class);
-        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(sender);
-    }
 }

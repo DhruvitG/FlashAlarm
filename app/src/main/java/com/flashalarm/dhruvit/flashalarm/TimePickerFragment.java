@@ -31,7 +31,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         int minute = c.get(Calendar.MINUTE);
 
         // Create a new instance of TimePickerDialog and return it
-        return new TimePickerDialog(getActivity(), R.style.AppTheme, this, hour, minute, android.text.format.DateFormat.is24HourFormat(getActivity()));
+        return new TimePickerDialog(getActivity(), DialogFragment.STYLE_NORMAL, this, hour, minute, android.text.format.DateFormat.is24HourFormat(getActivity()));
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute){
@@ -45,23 +45,10 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         if(currentTime > setTime){
             timeLeft += 24*60;
         }
-
-        AlarmReceiver alarmReceiver = new AlarmReceiver();
-        alarmReceiver.setAlarm(getActivity(), timeLeft);
-
-        insertAlarmDb(hourOfDay, minute);
-    }
-
-    public void insertAlarmDb(int hourOfDay, int minute){
-        AlarmsDbHelper alarmsOpenHelper = new AlarmsDbHelper(getActivity());
-        SQLiteDatabase db = alarmsOpenHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_HOUR, hourOfDay);
-        values.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_MINUTE, minute);
-        values.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_IS_REPEATING, 0);
-        values.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_IS_ON, 1);
-        long newRowId;
-        newRowId = db.insert(AlarmReaderContract.AlarmEntry.TABLE_NAME, null, values);
+        AlarmsDbHelper alarmsDbHelper = new AlarmsDbHelper(getActivity());
+        long id = alarmsDbHelper.insertAlarm(hourOfDay, minute);
+        com.flashalarm.dhruvit.flashalarm.AlarmManager alarmManager = new com.flashalarm.dhruvit.flashalarm.AlarmManager(getActivity());
+        alarmManager.setAlarm(timeLeft, id);
     }
 
 }
