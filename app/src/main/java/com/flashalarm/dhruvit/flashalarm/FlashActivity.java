@@ -10,6 +10,9 @@ import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Size;
 import android.view.Surface;
@@ -47,6 +50,11 @@ public class FlashActivity extends Activity {
         //default of flash mode  is on
         flashSwitch.setChecked(true);
         flashSwitch.setOnCheckedChangeListener(new MyCheckedChangeListener());
+
+        // ring default alarm ringtone
+        Uri alarmRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), alarmRingtoneUri);
+        ringtone.play();
 
         // turn off alarm
         Button turnOffButton = (Button) findViewById(R.id.turn_off_alarm);

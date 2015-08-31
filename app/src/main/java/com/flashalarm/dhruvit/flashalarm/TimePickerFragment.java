@@ -1,5 +1,6 @@
 package com.flashalarm.dhruvit.flashalarm;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -22,6 +23,25 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
+    onTimeSelectedListener mCallback;
+
+    public interface onTimeSelectedListener{
+        public void onTimeSelected();
+    }
+
+    @Override
+    public void onAttach(Activity activity){
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (onTimeSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -49,6 +69,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         long id = alarmsDbHelper.insertAlarm(hourOfDay, minute);
         com.flashalarm.dhruvit.flashalarm.AlarmManager alarmManager = new com.flashalarm.dhruvit.flashalarm.AlarmManager(getActivity());
         alarmManager.setAlarm(timeLeft, id);
+        mCallback.onTimeSelected();
     }
 
 }

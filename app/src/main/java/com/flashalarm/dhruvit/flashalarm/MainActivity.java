@@ -22,12 +22,13 @@ import android.widget.Toolbar;
 
 import java.util.Calendar;
 
-//TODO: Feature: enable alarms using toggle
+//TODO: Feature: add delete button for each alarm
 //TODO: add design to the listview
 
-public class MainActivity  extends ActionBarActivity{
+public class MainActivity  extends ActionBarActivity implements TimePickerFragment.onTimeSelectedListener{
     private android.support.v7.widget.Toolbar toolbar;
     private AlarmCursorAdapter alarmCursorAdapter;
+    private AlarmsDbHelper alarmsDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -38,6 +39,7 @@ public class MainActivity  extends ActionBarActivity{
         setSupportActionBar(toolbar);
 
         // retrieve alarm info from db and bind to listview
+        this.alarmsDbHelper = new AlarmsDbHelper(this);
         this.showUserAlarms();
 
         // button for displaying time picker
@@ -51,19 +53,11 @@ public class MainActivity  extends ActionBarActivity{
         });
     }
 
-    @Override
-    protected void onResume(){
-        super.onResume();
-        //this.alarmCursorAdapter.notifyDataSetChanged();
-        showUserAlarms();
-    }
-
     public void showUserAlarms(){
-        final AlarmsDbHelper alarmsDbHelper = new AlarmsDbHelper(this);
         final AlarmManager alarmManager = new AlarmManager(this);
 
         // bind db data to listview
-        Cursor cursor = alarmsDbHelper.getAlarms();
+        Cursor cursor = this.alarmsDbHelper.getAlarms();
         ListView alarmListView = (ListView) findViewById(R.id.alarm_listview);
         this.alarmCursorAdapter = new AlarmCursorAdapter(this, cursor, 0);
         alarmListView.setAdapter(this.alarmCursorAdapter);
@@ -102,5 +96,8 @@ public class MainActivity  extends ActionBarActivity{
         return timeLeft;
     }
 
-
+    public void onTimeSelected(){
+        Cursor cursor = this.alarmsDbHelper.getAlarms();
+        this.alarmCursorAdapter.changeCursor(cursor);
+    }
 }
