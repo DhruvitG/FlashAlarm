@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class MainActivity  extends ActionBarActivity implements TimePickerFragme
         this.showUserAlarms();
 
         // button for displaying time picker
-        Button newAlarmButton = (Button) this.findViewById(R.id.new_alarm_button);
+        FloatingActionButton newAlarmButton = (FloatingActionButton) this.findViewById(R.id.add_alarm_button);
         newAlarmButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // show timePicker

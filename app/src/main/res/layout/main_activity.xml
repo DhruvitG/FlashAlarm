@@ -9,20 +9,35 @@
         layout="@layout/tool_bar"
         ></include>
 
-    <Button
-        android:layout_marginTop="10dp"
-        android:id="@+id/new_alarm_button"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:text="@string/new_alarm"
-        android:background="@color/ColorPrimary"
-        android:textColor="@color/White"/>
+        android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/alarm_listview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/ColorPrimary">
-    </ListView>
+        <ListView
+            android:id="@+id/alarm_listview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/ColorPrimary">
+        </ListView>
+
+        <android.support.design.widget.FloatingActionButton
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/add_alarm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="24dp"
+            android:src="@android:drawable/ic_input_add"
+            android:tint="@color/ColorPrimary"
+            app:elevation="15dp"
+            app:borderWidth="0dp"
+            app:rippleColor="@color/background_material_dark"
+            app:backgroundTint="@color/White">
+        </android.support.design.widget.FloatingActionButton>
+    </RelativeLayout>
+
+
 
 </LinearLayout>
