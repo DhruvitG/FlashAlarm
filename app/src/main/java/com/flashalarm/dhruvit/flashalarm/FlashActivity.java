@@ -32,6 +32,7 @@ public class FlashActivity extends Activity {
     private CameraCaptureSession mSession;
     private CaptureRequest.Builder mBuilder;
     private CameraDevice mCameraDevice;
+    public Ringtone ringtone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class FlashActivity extends Activity {
                 + WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
                 + WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
         setContentView(R.layout.flash_activity);
+
         try {
             init();
         } catch (CameraAccessException e) {
@@ -53,7 +55,7 @@ public class FlashActivity extends Activity {
 
         // ring default alarm ringtone
         Uri alarmRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), alarmRingtoneUri);
+        ringtone = RingtoneManager.getRingtone(getApplicationContext(), alarmRingtoneUri);
         ringtone.play();
 
         // turn off alarm
@@ -195,6 +197,7 @@ public class FlashActivity extends Activity {
     class turnOffAlarmListener implements Button.OnLongClickListener{
         @Override
         public boolean onLongClick(View v){
+            ringtone.stop();
             finish();
             return true;
         }

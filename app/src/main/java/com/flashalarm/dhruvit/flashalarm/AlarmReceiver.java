@@ -22,10 +22,11 @@ public class AlarmReceiver extends BroadcastReceiver
         KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
         boolean isPhoneLocked = km.isDeviceLocked();
 
-
         wakeLock.acquire();
 
-        Toast.makeText(context, "Worked!!!", Toast.LENGTH_LONG).show();
+        int id = intent.getIntExtra(Intent.EXTRA_UID, 0);
+
+        Toast.makeText(context, "alarm id: "+ id, Toast.LENGTH_LONG).show();
         Intent myIntent = new Intent(context, FlashActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(myIntent);
