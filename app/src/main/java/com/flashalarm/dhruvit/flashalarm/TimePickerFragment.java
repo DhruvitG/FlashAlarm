@@ -39,7 +39,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
             mCallback = (onTimeSelectedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
+                    + " must implement OnTimeSelectedListener");
         }
     }
 
@@ -66,7 +66,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
             timeLeft += 24*60;
         }
         AlarmsDbHelper alarmsDbHelper = new AlarmsDbHelper(getActivity());
-        long id = alarmsDbHelper.insertAlarm(hourOfDay, minute);
+        int id = alarmsDbHelper.insertAlarm(hourOfDay, minute);
         com.flashalarm.dhruvit.flashalarm.AlarmManager alarmManager = new com.flashalarm.dhruvit.flashalarm.AlarmManager(getActivity());
         alarmManager.setAlarm(timeLeft, id);
         mCallback.onTimeSelected();

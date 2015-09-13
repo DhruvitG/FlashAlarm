@@ -15,7 +15,7 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + AlarmReaderContract.AlarmEntry.TABLE_NAME + " (" +
-            AlarmReaderContract.AlarmEntry.COLUMN_NAME_ALARM_ID + " MEDIUMINT[1000]," +
+            AlarmReaderContract.AlarmEntry.COLUMN_NAME_ALARM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             AlarmReaderContract.AlarmEntry.COLUMN_NAME_HOUR + " MEDIUMINT[24]," +
             AlarmReaderContract.AlarmEntry.COLUMN_NAME_MINUTE + " MEDIUMINT[60]," +
             AlarmReaderContract.AlarmEntry.COLUMN_NAME_IS_REPEATING + " TINYINT[1]," +
@@ -89,29 +89,35 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public long insertAlarm(int hourOfDay, int minute){
+    public int insertAlarm(int hourOfDay, int minute){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_HOUR, hourOfDay);
         values.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_MINUTE, minute);
         values.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_IS_REPEATING, 0);
         values.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_IS_ON, 1);
-        long newRowId;
-        newRowId = db.insert(AlarmReaderContract.AlarmEntry.TABLE_NAME, null, values);
+        int newRowId = (int)db.insert(AlarmReaderContract.AlarmEntry.TABLE_NAME, null, values);
         return newRowId;
     }
 
-    public void turnOnAlarm(long id){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_IS_ON, "1");
+    public void deleteAlarm(int id){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(AlarmReaderContract.AlarmEntry.TABLE_NAME, contentValues, "_id = " + id, null);
+        db.delete(AlarmReaderContract.AlarmEntry.TABLE_NAME, AlarmReaderContract.AlarmEntry.COLUMN_NAME_ALARM_ID + "=" + id, null);
     }
 
-    public void turnOffAlarm(long id){
+    public void turnOnAlarm(int id){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_IS_ON, "0");
+        contentValues.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_IS_ON, 1);
         SQLiteDatabase db = this.getWritableDatabase();
-        db.update(AlarmReaderContract.AlarmEntry.TABLE_NAME, contentValues, "_id = " + id, null);
+        db.update(AlarmReaderContract.AlarmEntry.TABLE_NAME, contentValues, AlarmReaderContract.AlarmEntry.COLUMN_NAME_ALARM_ID + "=" + id, null);
+    }
+
+    public void turnOffAlarm(int id){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(AlarmReaderContract.AlarmEntry.COLUMN_NAME_IS_ON, 0);
+        SQLiteDatabase db = this.getWritableDatabase();
+        int rowsAffected = db.update(AlarmReaderContract.AlarmEntry.TABLE_NAME, contentValues, AlarmReaderContract.AlarmEntry.COLUMN_NAME_ALARM_ID + "= " + id, null);
+        System.out.println("rowsAffected");
+        System.out.println(rowsAffected);
     }
 }

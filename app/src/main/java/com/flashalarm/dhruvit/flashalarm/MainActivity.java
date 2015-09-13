@@ -22,7 +22,6 @@ import android.widget.Toolbar;
 
 import java.util.Calendar;
 
-//TODO: Feature: add delete button for each alarm
 //TODO: add design to the listview
 
 public class MainActivity  extends ActionBarActivity implements TimePickerFragment.onTimeSelectedListener{
@@ -62,42 +61,19 @@ public class MainActivity  extends ActionBarActivity implements TimePickerFragme
         this.alarmCursorAdapter = new AlarmCursorAdapter(this, cursor, 0);
         alarmListView.setAdapter(this.alarmCursorAdapter);
 
-
-        alarmListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*alarmListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // enable/disable alarm according to toggle button for each entry in listview
-                if (view.getId() == R.id.toggle_button) {
-                    Switch toggle = (Switch) view;
-                    if (toggle.isChecked()) {
-                        alarmsDbHelper.turnOnAlarm(id);
-                        Cursor cursor = alarmsDbHelper.getAlarm(id);
-                        int timeLeft = getTimeLeft(cursor.getColumnIndex(AlarmReaderContract.AlarmEntry.COLUMN_NAME_HOUR), cursor.getColumnIndex(AlarmReaderContract.AlarmEntry.COLUMN_NAME_MINUTE));
-                        alarmManager.setAlarm(timeLeft, id);
-                    } else {
-                        alarmsDbHelper.turnOffAlarm(id);
-                        alarmManager.CancelAlarm(id);
-                    }
-                }
+
             }
-        });
+        });*/
     }
 
-    public int getTimeLeft(int hourOfDay, int minute){
-        final Calendar c = Calendar.getInstance();
-        int currentHour = c.get(Calendar.HOUR_OF_DAY);
-        int currentMinute = c.get(Calendar.MINUTE);
-        int currentTime = currentHour * 60 + currentMinute;
-        int setTime = hourOfDay * 60 + minute;
-        int timeLeft = setTime - currentTime;
-        if(currentTime > setTime){
-            timeLeft += 24*60;
-        }
-        return timeLeft;
-    }
+
 
     public void onTimeSelected(){
         Cursor cursor = this.alarmsDbHelper.getAlarms();
         this.alarmCursorAdapter.changeCursor(cursor);
     }
+
 }
