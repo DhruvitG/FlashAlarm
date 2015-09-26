@@ -5,6 +5,9 @@
 
         <item name="colorPrimary">@color/ColorPrimary</item>
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <item name="android:typeface">monospace</item>
         <!-- Customize your theme here. -->
     </style>
+
+
 </resources>

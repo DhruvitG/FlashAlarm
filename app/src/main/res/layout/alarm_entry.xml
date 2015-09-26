@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/ColorPrimary">
     <TextView
         android:id="@+id/time_view"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:layout_margin="5dp"
@@ -19,6 +20,7 @@
         android:layout_toLeftOf="@+id/toggle_button"
         android:focusable="false"
         android:background="@drawable/delete"
+        android:backgroundTint="@color/White"
         android:layout_centerVertical="true"/>
     <Switch
         android:id="@+id/toggle_button"
@@ -28,5 +30,6 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:checked="true"
-        android:focusable="false"/>
+        android:focusable="false"
+        android:thumbTint="@color/White"/>
 </RelativeLayout>

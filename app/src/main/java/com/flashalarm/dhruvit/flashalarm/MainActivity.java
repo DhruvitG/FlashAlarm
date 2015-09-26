@@ -24,6 +24,7 @@ import android.widget.Toolbar;
 import java.util.Calendar;
 
 //TODO: add design to the listview
+//TODO: look into recyclerview
 
 public class MainActivity  extends ActionBarActivity implements TimePickerFragment.onTimeSelectedListener{
     private android.support.v7.widget.Toolbar toolbar;

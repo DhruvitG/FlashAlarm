@@ -17,7 +17,7 @@
             android:id="@+id/alarm_listview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@color/ColorPrimary">
+            android:background="@color/White">
         </ListView>
 
         <android.support.design.widget.FloatingActionButton
@@ -30,11 +30,11 @@
             android:layout_marginBottom="24dp"
             android:layout_marginEnd="24dp"
             android:src="@android:drawable/ic_input_add"
-            android:tint="@color/ColorPrimary"
+            android:tint="@color/White"
             app:elevation="15dp"
             app:borderWidth="0dp"
             app:rippleColor="@color/background_material_dark"
-            app:backgroundTint="@color/White">
+            app:backgroundTint="@color/ColorPrimary">
         </android.support.design.widget.FloatingActionButton>
     </RelativeLayout>
 
