@@ -1,23 +1,28 @@
 package com.flashalarm.dhruvit.flashalarm;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class AlarmCursorAdapter extends CursorAdapter{
+    public OnListDataChangedListener mCallback;
     public AlarmsDbHelper alarmsDbHelper;
     public AlarmManager alarmManager;
 
     public AlarmCursorAdapter(Context context, Cursor cursor, int flags){
         super(context, cursor, 0);
+        mCallback = (OnListDataChangedListener) context;
     }
 
     @Override
@@ -60,6 +65,7 @@ public class AlarmCursorAdapter extends CursorAdapter{
                 System.out.println("delete button pressed");
                 alarmsDbHelper.deleteAlarm(alarm_id);
                 alarmManager.CancelAlarm(alarm_id);
+                mCallback.onListDataChanged();
             }
         });
 

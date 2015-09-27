@@ -26,7 +26,7 @@ import java.util.Calendar;
 //TODO: add design to the listview
 //TODO: look into recyclerview
 
-public class MainActivity  extends ActionBarActivity implements TimePickerFragment.onTimeSelectedListener{
+public class MainActivity  extends ActionBarActivity implements OnListDataChangedListener{
     private android.support.v7.widget.Toolbar toolbar;
     private AlarmCursorAdapter alarmCursorAdapter;
     private AlarmsDbHelper alarmsDbHelper;
@@ -55,8 +55,6 @@ public class MainActivity  extends ActionBarActivity implements TimePickerFragme
     }
 
     public void showUserAlarms(){
-        final AlarmManager alarmManager = new AlarmManager(this);
-
         // bind db data to listview
         Cursor cursor = this.alarmsDbHelper.getAlarms();
         ListView alarmListView = (ListView) findViewById(R.id.alarm_listview);
@@ -73,7 +71,7 @@ public class MainActivity  extends ActionBarActivity implements TimePickerFragme
 
 
 
-    public void onTimeSelected(){
+    public void onListDataChanged(){
         Cursor cursor = this.alarmsDbHelper.getAlarms();
         this.alarmCursorAdapter.changeCursor(cursor);
     }

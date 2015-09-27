@@ -23,11 +23,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
-    onTimeSelectedListener mCallback;
-
-    public interface onTimeSelectedListener{
-        public void onTimeSelected();
-    }
+    OnListDataChangedListener mCallback;
 
     @Override
     public void onAttach(Activity activity){
@@ -36,7 +32,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-            mCallback = (onTimeSelectedListener) activity;
+            mCallback = (OnListDataChangedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnTimeSelectedListener");
@@ -68,7 +64,7 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         int id = alarmsDbHelper.insertAlarm(hourOfDay, minute);
         com.flashalarm.dhruvit.flashalarm.AlarmManager alarmManager = new com.flashalarm.dhruvit.flashalarm.AlarmManager(getActivity());
         alarmManager.setAlarm(timeLeft, id);
-        mCallback.onTimeSelected();
+        mCallback.onListDataChanged();
     }
 
 }
